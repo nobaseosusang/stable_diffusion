@@ -1,11 +1,14 @@
-import pydantic as _pydantic
+from pydantic import BaseModel
 from typing import Optional
 
-class _PromptBase(_pydantic.BaseModel):
+class ImageCreate(BaseModel):
+    prompt: str
     seed: Optional[int] = 42
     num_inference_steps: int = 10
     guidance_scale: float = 7.5
 
-
-class ImageCreate(_PromptBase):
+class Img2ImgCreate(BaseModel):
     prompt: str
+    seed: Optional[int] = 42
+    num_inference_steps: int = 10
+    guidance_scale: float = 7.5
