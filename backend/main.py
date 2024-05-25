@@ -5,28 +5,7 @@ from typing import Optional
 import io
 from PIL import Image
 import services as _service
-
-
-class ImageCreate(BaseModel):
-    prompt: str
-    seed: Optional[int] = 0
-    num_inference_steps: int = 30
-    guidance_scale: float = 7.5
-    model_name: Optional[str] = "CompVis/stable-diffusion-v1-4"
-
-    class Config:
-        protected_namespaces = ()
-
-class Img2ImgCreate(BaseModel):
-    prompt: str
-    seed: Optional[int] = 0
-    num_inference_steps: int = 30
-    guidance_scale: float = 7.5
-    model_name: Optional[str] = "CompVis/stable-diffusion-v1-4"
-
-    class Config:
-        protected_namespaces = ()
-
+from schemas import ImageCreate, Img2ImgCreate
 
 app = FastAPI()
 
