@@ -97,4 +97,5 @@ async def img2img(imgPrompt: _schemas.Img2ImgCreate, init_image: Image) -> Image
         num_inference_steps=imgPrompt.num_inference_steps,
         generator=generator
     ).images[0]
+    
     return image
