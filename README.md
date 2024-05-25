@@ -90,11 +90,10 @@ Request:
 json
  
 {
-    "prompt": "A fantasy landscape with mountains and rivers",
-    "seed": 42,
-    "num_inference_steps": 30,
-    "guidance_scale": 7.5,
-    "model_name": "CompVis/stable-diffusion-v1-4"
+    "prompt": str,
+    "seed": int,
+    "num_inference_steps": int,
+    "guidance_scale": int,
 }
 Response:
 
@@ -112,11 +111,10 @@ Request:
 json
  
 {
-    "prompt": "A beautiful forest",
-    "seed": 42,
-    "num_inference_steps": 30,
-    "guidance_scale": 7.5,
-    "model_name": "CompVis/stable-diffusion-v1-4"
+    "prompt": str,
+    "seed": int,
+    "num_inference_steps": int,
+    "guidance_scale": int,
 }
 Response:
 
@@ -134,13 +132,11 @@ Request:
 파일: 업로드할 이미지 파일
 JSON 데이터:
 json
- 
 {
-    "prompt": "A cyberpunk cityscape at night",
-    "seed": 42,
-    "num_inference_steps": 30,
-    "guidance_scale": 7.5,
-    "model_name": "CompVis/stable-diffusion-v1-4"
+    "prompt": str,
+    "seed": int,
+    "num_inference_steps": int,
+    "guidance_scale": int,
 }
 Response:
 
@@ -158,11 +154,10 @@ Request:
 json
  
 {
-    "prompt": "A fantasy landscape with mountains and rivers",
-    "seed": 42,
-    "num_inference_steps": 30,
-    "guidance_scale": 7.5,
-    "model_name": "CompVis/stable-diffusion-v1-4"
+    "prompt": str,
+    "seed": int,
+    "num_inference_steps": int,
+    "guidance_scale": int,
 }
 Response:
 
