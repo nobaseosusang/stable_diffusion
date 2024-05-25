@@ -46,7 +46,7 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 ## API 엔드포인트
 
-1. 기본 엔드포인트
+**1. 기본 엔드포인트**
 GET /
 
 서버 상태를 확인할 수 있습니다.
@@ -64,7 +64,7 @@ json
     "message": "Stable Diffusers API에 오신 것을 환영합니다"
 }
 ```
-2. 이미지 생성 엔드포인트
+**2. 이미지 생성 엔드포인트**
 POST /api/generate/
 
 입력된 프롬프트를 사용하여 이미지를 생성합니다.
@@ -86,7 +86,7 @@ Response:
 이미지 파일 (image/png)
 ```
 
-3. 2D 게임 에셋 생성 엔드포인트
+**3. 2D 게임 에셋 생성 엔드포인트**
 POST /api/generate_2d_asset/
 
 입력된 프롬프트에 "2D game asset" 키워드를 추가하여 2D 게임 에셋을 생성합니다.
@@ -108,7 +108,7 @@ Response:
 이미지 파일 (image/png)
 ```
 
-4. 이미지 변환 엔드포인트 (img2img)
+**4. 이미지 변환 엔드포인트 (img2img)**
 POST /api/img2img/
 
 업로드된 이미지를 기반으로 새로운 이미지를 생성합니다.
@@ -132,7 +132,7 @@ Response:
 이미지 파일 (image/png)
 ```
 
-5. 이미지 생성 엔드포인트(배경 제거)
+**5. 이미지 생성 엔드포인트(배경 제거)**
 POST /api/generate_withoutbg/
 
 2번과 동일하지만 배경을 삭제합니다.
