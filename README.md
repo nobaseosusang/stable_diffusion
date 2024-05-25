@@ -164,4 +164,7 @@ Response:
 이미지 파일 (image/png)
 ```
 ## 추천 프롬프트
-(top quality, 8k wallpaper), (masterpiece, best quality:1.2), (high_resolution:1.2), (ultra details:1.2), extreme quality, sharp focus, (bright colors), (vivid color:1.2), photorealistic, extremely detailed, (ultra detailed), intricate details,
+(top quality, 8k wallpaper), (masterpiece, best quality:1.2), (high_resolution:1.2), (ultra details:1.2), extreme quality, sharp focus, (bright colors), (vivid color:1.2), photorealistic, extremely detailed, (ultra detailed), intricate details
+
+**P.S.**
+선배님들 이거 배포하는법좀 나중에 알려주실수 있나요 ㅠㅠㅠㅠㅠ
