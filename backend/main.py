@@ -5,8 +5,11 @@ from typing import Optional
 import io
 from PIL import Image
 import services as _service
-from schemas import ImageCreate, Img2ImgCreate
+from schemas import ImageCreate, Img2ImgCreate, save_image_locally
 import json
+import os
+from datetime import datetime
+
 
 app = FastAPI()
 
@@ -19,6 +22,7 @@ async def generate_image(params: ImageCreate):
     try:
         params.prompt += ",Masterpiece, high_quality,super detail"
         image = await _service.generate_image(params)
+        file_name = save_image_locally(image)
         memory_stream = io.BytesIO()
         image.save(memory_stream, format="PNG")
         memory_stream.seek(0)
@@ -35,6 +39,7 @@ async def img2img(file: UploadFile = File(...), params: str = Form(...)):
 
         input_image = Image.open(file.file).convert("RGB")
         image = await _service.img2img(img2img_params, input_image)
+        file_name = save_image_locally(image)
         memory_stream = io.BytesIO()
         image.save(memory_stream, format="PNG")
         memory_stream.seek(0)
@@ -49,6 +54,7 @@ async def generate_2d_asset(params: ImageCreate):
         params.prompt += ",pixel art assets for a rpg videogame +,Masterpiece, high_quality,super detail"
         image = await _service.generate_image(params)
         image = _service.remove_bg(image)
+        file_name = save_image_locally(image)
         memory_stream = io.BytesIO()
         image.save(memory_stream, format="PNG")
         memory_stream.seek(0)
@@ -62,6 +68,7 @@ async def generate_image(params: ImageCreate):
         params.prompt += ",Masterpiece, high_quality,super detail"
         image = await _service.generate_image(params)
         image = _service.remove_bg(image)
+        file_name = save_image_locally(image)
         memory_stream = io.BytesIO()
         image.save(memory_stream, format="PNG")
         memory_stream.seek(0)
