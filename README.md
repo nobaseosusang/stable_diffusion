@@ -1,6 +1,6 @@
-# Stable Diffusion 2D Game Asset Generator API
+# Stable Diffusion with 2D Game Asset Generator API
 
-이 프로젝트는 Stable Diffusion 모델을 사용하여 2D 게임 에셋을 생성하는 FastAPI 백엔드 애플리케이션입니다. 사용자는 텍스트 프롬프트를 입력하여 이미지를 생성할 수 있으며, 프롬프트에 "2D game asset" 키워드를 추가하여 2D 게임 에셋을 생성할 수 있습니다.
+이 프로젝트는 Stable Diffusion 모델을 구현한 FastAPI 백엔드 애플리케이션입니다. 사용자는 텍스트 프롬프트를 입력하여 이미지를 생성할 수 있으며, 프롬프트에 "2D game asset" 키워드를 추가하여 2D 게임 에셋을 생성할 수 있습니다.
 
 ## 요구 사항
 
@@ -43,3 +43,82 @@
 ```bash
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
+API 엔드포인트
+1. 기본 엔드포인트
+GET /
+
+서버 상태를 확인할 수 있습니다.
+
+Request:
+
+bash
+코드 복사
+curl http://localhost:8000/
+Response:
+
+json
+코드 복사
+{
+    "message": "Stable Diffusers API에 오신 것을 환영합니다"
+}
+2. 이미지 생성 엔드포인트
+POST /api/generate/
+
+입력된 프롬프트를 사용하여 이미지를 생성합니다.
+
+Request:
+
+json
+코드 복사
+{
+    "prompt": "A fantasy landscape with mountains and rivers",
+    "seed": 42,
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "model_name": "CompVis/stable-diffusion-v1-4"
+}
+Response:
+
+이미지 파일 (image/png)
+
+3. 2D 게임 에셋 생성 엔드포인트
+POST /api/generate_2d_asset/
+
+입력된 프롬프트에 "2D game asset" 키워드를 추가하여 2D 게임 에셋을 생성합니다.
+
+Request:
+
+json
+코드 복사
+{
+    "prompt": "A beautiful forest",
+    "seed": 42,
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "model_name": "CompVis/stable-diffusion-v1-4"
+}
+Response:
+
+이미지 파일 (image/png)
+
+4. 이미지 변환 엔드포인트 (img2img)
+POST /api/img2img/
+
+업로드된 이미지를 기반으로 새로운 이미지를 생성합니다.
+
+Request:
+
+파일: 업로드할 이미지 파일
+JSON 데이터:
+json
+코드 복사
+{
+    "prompt": "A cyberpunk cityscape at night",
+    "seed": 42,
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "model_name": "CompVis/stable-diffusion-v1-4"
+}
+Response:
+
+이미지 파일 (image/png)
