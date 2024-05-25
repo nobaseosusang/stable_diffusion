@@ -42,6 +42,7 @@
 
 ```bash
 uvicorn main:app --reload --host 0.0.0.0 --port 8000
+'''
 
 ##API 엔드포인트
 1. 기본 엔드포인트
