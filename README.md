@@ -122,3 +122,23 @@ json
 Response:
 
 이미지 파일 (image/png)
+
+5. 이미지 생성 엔드포인트(배경 제거)
+POST /api/generate_withoutbg/
+
+2번과 동일하지만 배경을 삭제합니다.
+
+Request:
+
+json
+ 
+{
+    "prompt": "A fantasy landscape with mountains and rivers",
+    "seed": 42,
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "model_name": "CompVis/stable-diffusion-v1-4"
+}
+Response:
+
+이미지 파일 (image/png)
