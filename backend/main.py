@@ -37,6 +37,7 @@ def read_root():
 @app.post("/api/generate/")
 async def generate_image(params: ImageCreate):
     try:
+        params.prompt += ",Masterpiece, high_quality,super detail"
         image = await _service.generate_image(params)
         memory_stream = io.BytesIO()
         image.save(memory_stream, format="PNG")
@@ -48,6 +49,7 @@ async def generate_image(params: ImageCreate):
 @app.post("/api/img2img/")
 async def img2img(params: Img2ImgCreate, file: UploadFile = File(...)):
     try:
+        params.prompt += ",Masterpiece, high_quality,super detail"
         input_image = Image.open(file.file).convert("RGB")
         image = await _service.img2img(params, input_image)
         memory_stream = io.BytesIO()
@@ -56,4 +58,30 @@ async def img2img(params: Img2ImgCreate, file: UploadFile = File(...)):
         return StreamingResponse(memory_stream, media_type="image/png")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
 
+@app.post("/api/generate_2d_asset/")
+async def generate_2d_asset(params: ImageCreate):
+    try:
+        params.prompt += ",pixel art assets for a rpg videogame +,Masterpiece, high_quality,super detail"
+        image = await _service.generate_image(params)
+        image = _service.remove_bg(image)
+        memory_stream = io.BytesIO()
+        image.save(memory_stream, format="PNG")
+        memory_stream.seek(0)
+        return (StreamingResponse(memory_stream, media_type="image/png"))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/api/generate_withoutbg/")
+async def generate_image(params: ImageCreate):
+    try:
+        params.prompt += ",Masterpiece, high_quality,super detail"
+        image = await _service.generate_image(params)
+        image = _service.remove_bg(image)
+        memory_stream = io.BytesIO()
+        image.save(memory_stream, format="PNG")
+        memory_stream.seek(0)
+        return StreamingResponse(memory_stream, media_type="image/png")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
