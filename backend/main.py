@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, File, UploadFile
+from fastapi import FastAPI, HTTPException, File, UploadFile, Form
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Optional
@@ -6,6 +6,7 @@ import io
 from PIL import Image
 import services as _service
 from schemas import ImageCreate, Img2ImgCreate
+import json
 
 app = FastAPI()
 
@@ -26,11 +27,14 @@ async def generate_image(params: ImageCreate):
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/img2img/")
-async def img2img(params: Img2ImgCreate, file: UploadFile = File(...)):
+async def img2img(file: UploadFile = File(...), params: str = Form(...)):
     try:
-        params.prompt += ",Masterpiece, high_quality,super detail"
+        # JSON 문자열을 파이썬 객체로 변환
+        params_dict = json.loads(params)
+        img2img_params = Img2ImgCreate(**params_dict)
+
         input_image = Image.open(file.file).convert("RGB")
-        image = await _service.img2img(params, input_image)
+        image = await _service.img2img(img2img_params, input_image)
         memory_stream = io.BytesIO()
         image.save(memory_stream, format="PNG")
         memory_stream.seek(0)
