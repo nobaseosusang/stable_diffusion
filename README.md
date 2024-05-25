@@ -52,12 +52,12 @@ GET /
 Request:
 
 bash
-코드 복사
+ 
 curl http://localhost:8000/
 Response:
 
 json
-코드 복사
+ 
 {
     "message": "Stable Diffusers API에 오신 것을 환영합니다"
 }
@@ -69,7 +69,7 @@ POST /api/generate/
 Request:
 
 json
-코드 복사
+ 
 {
     "prompt": "A fantasy landscape with mountains and rivers",
     "seed": 42,
@@ -89,7 +89,7 @@ POST /api/generate_2d_asset/
 Request:
 
 json
-코드 복사
+ 
 {
     "prompt": "A beautiful forest",
     "seed": 42,
@@ -111,7 +111,7 @@ Request:
 파일: 업로드할 이미지 파일
 JSON 데이터:
 json
-코드 복사
+ 
 {
     "prompt": "A cyberpunk cityscape at night",
     "seed": 42,
